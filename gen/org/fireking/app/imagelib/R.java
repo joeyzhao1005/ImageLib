@@ -27,6 +27,7 @@ public final class R {
         public static int ic_launcher=0x7f020003;
         public static int icon_addpic_focused=0x7f020004;
         public static int pictures_select_icon=0x7f020005;
+        public static int tk_photo=0x7f020006;
     }
     public static final class id {
         public static int album=0x7f080006;
@@ -34,6 +35,7 @@ public final class R {
         public static int album_count=0x7f08000f;
         public static int album_image=0x7f08000d;
         public static int album_name=0x7f08000e;
+        public static int back=0x7f080003;
         public static int btn=0x7f080000;
         public static int buttombanner=0x7f080005;
         public static int child_checkbox=0x7f08000b;
@@ -43,10 +45,9 @@ public final class R {
         public static int framelayout=0x7f080009;
         public static int list=0x7f08000c;
         public static int menu_settings=0x7f080011;
-        public static int pop=0x7f080001;
         public static int preview=0x7f080007;
-        public static int title=0x7f080003;
-        public static int topbanner=0x7f080002;
+        public static int title=0x7f080002;
+        public static int topbanner=0x7f080001;
     }
     public static final class layout {
         public static int publish=0x7f030000;

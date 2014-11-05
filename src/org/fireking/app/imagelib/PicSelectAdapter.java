@@ -8,6 +8,7 @@ import org.fireking.app.imagelib.PicSelectActivity.OnImageSelectedListener;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -16,6 +17,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.nineoldandroids.animation.AnimatorSet;
@@ -29,9 +31,6 @@ public class PicSelectAdapter extends BaseAdapter {
 	private GridView mGridView;
 	OnImageSelectedListener onImageSelectedListener;
 	OnImageSelectedCountListener onImageSelectedCountListener;
-
-	// 最大选中数量
-	final int limit = 9;
 
 	public PicSelectAdapter(Context context, GridView mGridView,
 			OnImageSelectedCountListener onImageSelectedCountListener) {
@@ -67,8 +66,9 @@ public class PicSelectAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		final int index = position;
+		final ImageBean ib = (ImageBean) getItem(index);
 		final ViewHolder viewHolder;
-		final ImageBean ib = (ImageBean) getItem(position);
 		if (convertView == null) {
 			viewHolder = new ViewHolder();
 			convertView = View.inflate(context,
@@ -78,7 +78,6 @@ public class PicSelectAdapter extends BaseAdapter {
 			viewHolder.mCheckBox = (CheckBox) convertView
 					.findViewById(R.id.child_checkbox);
 			viewHolder.mImageView.setOnMeasureListener(new OnMeasureListener() {
-
 				@Override
 				public void onMeasureSize(int width, int height) {
 					mPoint.set(width, height);
@@ -90,47 +89,60 @@ public class PicSelectAdapter extends BaseAdapter {
 			viewHolder.mImageView
 					.setImageResource(R.drawable.friends_sends_pictures_no);
 		}
+
 		viewHolder.mImageView.setTag(ib.path);
-		viewHolder.mCheckBox
-				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-					@Override
-					public void onCheckedChanged(CompoundButton buttonView,
-							boolean isChecked) {
-						int count = onImageSelectedCountListener
-								.getImageSelectedCount();
-						if (count == limit) {
-							Toast.makeText(context, "最多只能现在" + limit + "张图片",
-									Toast.LENGTH_SHORT).show();
-							buttonView.setChecked(false);
-						} else {
-							// 如果是未选中的CheckBox,则添加动画
-							if (!ib.isChecked && isChecked) {
-								addAnimation(viewHolder.mCheckBox);
-							}
-							ib.isChecked = isChecked;
-							onImageSelectedListener.onImageSelected(ib);
-						}
-					}
-				});
-
-		Bitmap bitmap = NativeImageLoader.getInstance().loadNativeImage(
-				ib.path, mPoint, new NativeImageCallBack() {
-
-					@Override
-					public void onImageLoader(Bitmap bitmap, String path) {
-						ImageView mImageView = (ImageView) mGridView
-								.findViewWithTag(ib.path);
-						if (bitmap != null && mImageView != null) {
-							mImageView.setImageBitmap(bitmap);
-						}
-					}
-				});
-		if (bitmap != null) {
-			viewHolder.mImageView.setImageBitmap(bitmap);
+		if (index == 0) {
+			viewHolder.mImageView.setImageResource(R.drawable.tk_photo);
 		} else {
-			viewHolder.mImageView
-					.setImageResource(R.drawable.friends_sends_pictures_no);
+			viewHolder.mCheckBox
+					.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+						@Override
+						public void onCheckedChanged(CompoundButton buttonView,
+								boolean isChecked) {
+							int count = onImageSelectedCountListener
+									.getImageSelectedCount();
+							if (count == Config.limit && isChecked) {
+								Toast.makeText(context,
+										"最多只能现在" + Config.limit + "张图片",
+										Toast.LENGTH_SHORT).show();
+								viewHolder.mCheckBox.setChecked(ib.isChecked);
+							} else {
+								// 如果是未选中的CheckBox,则添加动画
+								if (!ib.isChecked && isChecked) {
+									addAnimation(viewHolder.mCheckBox);
+								}
+								ib.isChecked = isChecked;
+							}
+							onImageSelectedListener.notifyChecked();
+						}
+					});
+			if (ib.isChecked) {
+				viewHolder.mCheckBox.setChecked(true);
+			} else {
+				viewHolder.mCheckBox.setChecked(false);
+			}
+
+			Bitmap bitmap = NativeImageLoader.getInstance().loadNativeImage(
+					ib.path, mPoint, new NativeImageCallBack() {
+
+						@Override
+						public void onImageLoader(Bitmap bitmap, String path) {
+							ImageView mImageView = (ImageView) mGridView
+									.findViewWithTag(ib.path);
+							if (bitmap != null && mImageView != null) {
+								mImageView.setImageBitmap(bitmap);
+							}
+						}
+					});
+
+			if (bitmap != null) {
+				viewHolder.mImageView.setImageBitmap(bitmap);
+			} else {
+				viewHolder.mImageView
+						.setImageResource(R.drawable.friends_sends_pictures_no);
+			}
 		}
 		return convertView;
 	}

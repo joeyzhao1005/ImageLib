@@ -18,6 +18,7 @@ import android.os.Message;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -44,12 +45,14 @@ public class PicSelectActivity extends BaseActivity {
 	TextView complete;
 	TextView preView;
 
-	List<ImageBean> selecteds = new ArrayList<ImageBean>();
+	TextView back;
 
 	static final int SCAN_OK = 0x1001;
 
 	static boolean isOpened = false;
 	PopupWindow popWindow;
+
+	int selected = 0;
 
 	int height = 0;
 	List<AlbumBean> mAlbumBean;
@@ -59,15 +62,20 @@ public class PicSelectActivity extends BaseActivity {
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		setContentView(R.layout.the_picture_selection);
-
+		back = (TextView) this.findViewById(R.id.back);
 		album = (TextView) this.findViewById(R.id.album);
 		complete = (TextView) this.findViewById(R.id.complete);
 		preView = (TextView) this.findViewById(R.id.preview);
+		back.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
 		preView.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-
 			}
 		});
 
@@ -75,6 +83,7 @@ public class PicSelectActivity extends BaseActivity {
 
 			@Override
 			public void onClick(View v) {
+				List<ImageBean> selecteds = getSelectedItem();
 				Intent intent = new Intent();
 				intent.putExtra(IMAGES, (Serializable) selecteds);
 				setResult(RESULT_OK, intent);
@@ -88,6 +97,9 @@ public class PicSelectActivity extends BaseActivity {
 			public void onClick(View v) {
 				if (!isOpened && popWindow != null) {
 					height = getWindow().getDecorView().getHeight();
+					WindowManager.LayoutParams ll = getWindow().getAttributes();
+					ll.alpha = 0.3f;
+					getWindow().setAttributes(ll);
 					popWindow.showAtLocation(
 							findViewById(android.R.id.content),
 							Gravity.NO_GRAVITY,
@@ -96,8 +108,13 @@ public class PicSelectActivity extends BaseActivity {
 									- CommonsUitls.dip2px(
 											PicSelectActivity.this, 448));
 				} else {
-					if (popWindow != null)
+					if (popWindow != null) {
 						popWindow.dismiss();
+						WindowManager.LayoutParams ll = getWindow()
+								.getAttributes();
+						ll.alpha = 1f;
+						getWindow().setAttributes(ll);
+					}
 				}
 			}
 		});
@@ -113,26 +130,19 @@ public class PicSelectActivity extends BaseActivity {
 
 		@Override
 		public int getImageSelectedCount() {
-			return selecteds.size();
+			return selected;
 		}
 	};
 
 	OnImageSelectedListener onImageSelectedListener = new OnImageSelectedListener() {
 
 		@Override
-		public void onImageSelected(ImageBean ib) {
-			if (ib.isChecked) {
-				selecteds.add(ib);
-			} else {
-				selecteds.remove(ib);
-			}
-			if (selecteds.size() != 0) {
-				// 更改完成按钮上的数字
-				complete.setText("完成(" + selecteds.size() + "/9)");
-				// 更改预览按钮的数字
-				preView.setText("预览(" + selecteds.size() + ")");
-			}
-
+		public void notifyChecked() {
+			selected = getSelectedCount();
+			// 改变完成统计
+			complete.setText("完成(" + selected + "/" + Config.limit + ")");
+			// 改变预览统计
+			preView.setText("预览(" + selected + "/" + Config.limit + ")");
 		}
 	};
 
@@ -155,11 +165,46 @@ public class PicSelectActivity extends BaseActivity {
 			super.handleMessage(msg);
 			if (SCAN_OK == msg.what) {
 				mAlbumBean = (List<AlbumBean>) msg.obj;
-				adapter.taggle(mAlbumBean.get(0));
+				AlbumBean b = mAlbumBean.get(0);
+				adapter.taggle(b);
 				popWindow = showPopWindow();
 			}
 		};
 	};
+
+	/**
+	 * 获取选中的数值
+	 * 
+	 * @return
+	 */
+	private int getSelectedCount() {
+		int count = 0;
+		for (AlbumBean albumBean : mAlbumBean) {
+			for (ImageBean b : albumBean.sets) {
+				if (b.isChecked == true) {
+					count++;
+				}
+			}
+		}
+		return count;
+	}
+
+	private List<ImageBean> getSelectedItem() {
+		int count = 0;
+		List<ImageBean> beans = new ArrayList<ImageBean>();
+		OK: for (AlbumBean albumBean : mAlbumBean) {
+			for (ImageBean b : albumBean.sets) {
+				if (b.isChecked == true) {
+					beans.add(b);
+					count++;
+				}
+				if (count == Config.limit) {
+					break OK;
+				}
+			}
+		}
+		return beans;
+	}
 
 	private PopupWindow showPopWindow() {
 		LayoutInflater inflater = LayoutInflater.from(this);
@@ -175,15 +220,16 @@ public class PicSelectActivity extends BaseActivity {
 		listView.setAdapter(albumAdapter);
 		albumAdapter.setData(mAlbumBean);
 		listView.setOnItemClickListener(new OnItemClickListener() {
-
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				AlbumBean b = (AlbumBean) parent.getItemAtPosition(position);
-
 				adapter.taggle(b);
 				// 更改选中的文字
 				album.setText(b.folderName);
+				WindowManager.LayoutParams ll = getWindow().getAttributes();
+				ll.alpha = 1f;
+				getWindow().setAttributes(ll);
 				mPopupWindow.dismiss();
 			}
 		});
@@ -279,7 +325,7 @@ public class PicSelectActivity extends BaseActivity {
 	}
 
 	public interface OnImageSelectedListener {
-		void onImageSelected(ImageBean ib);
+		void notifyChecked();
 	}
 
 	public interface OnImageSelectedCountListener {

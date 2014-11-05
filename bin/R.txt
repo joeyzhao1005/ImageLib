@@ -6,11 +6,13 @@ int drawable friends_sends_pictures_select_icon_unselected 0x7f020002
 int drawable ic_launcher 0x7f020003
 int drawable icon_addpic_focused 0x7f020004
 int drawable pictures_select_icon 0x7f020005
+int drawable tk_photo 0x7f020006
 int id album 0x7f080006
 int id album_ck 0x7f080010
 int id album_count 0x7f08000f
 int id album_image 0x7f08000d
 int id album_name 0x7f08000e
+int id back 0x7f080003
 int id btn 0x7f080000
 int id buttombanner 0x7f080005
 int id child_checkbox 0x7f08000b
@@ -20,10 +22,9 @@ int id complete 0x7f080004
 int id framelayout 0x7f080009
 int id list 0x7f08000c
 int id menu_settings 0x7f080011
-int id pop 0x7f080001
 int id preview 0x7f080007
-int id title 0x7f080003
-int id topbanner 0x7f080002
+int id title 0x7f080002
+int id topbanner 0x7f080001
 int layout publish 0x7f030000
 int layout the_picture_selection 0x7f030001
 int layout the_picture_selection_item 0x7f030002

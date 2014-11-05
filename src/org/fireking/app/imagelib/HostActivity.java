@@ -25,6 +25,7 @@ public class HostActivity extends BaseActivity {
 			public void onClick(View v) {
 				Intent intent = new Intent(HostActivity.this,
 						PicSelectActivity.class);
+				// 动态设置图片的数量
 				startActivityForResult(intent, 0x123);
 			}
 		});

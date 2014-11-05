@@ -92,7 +92,9 @@ public class PicSelectAdapter extends BaseAdapter {
 
 		if (index == 0) {
 			viewHolder.mImageView.setImageResource(R.drawable.tk_photo);
+			viewHolder.mCheckBox.setVisibility(View.GONE);
 		} else {
+			viewHolder.mCheckBox.setVisibility(View.VISIBLE);
 			viewHolder.mCheckBox
 					.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 

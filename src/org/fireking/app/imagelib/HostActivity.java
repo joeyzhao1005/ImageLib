@@ -38,7 +38,7 @@ public class HostActivity extends BaseActivity {
 			List<ImageBean> images = (List<ImageBean>) intent
 					.getSerializableExtra("images");
 			for (ImageBean b : images) {
-				System.out.println(b.toString());
+				System.out.println("<><<><> ???" + b.toString());
 			}
 		}
 		super.onActivityResult(requestCode, resultCode, data);

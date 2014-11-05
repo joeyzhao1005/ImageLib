@@ -1,8 +1,11 @@
 package org.fireking.app.imagelib;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 import org.fireking.app.imagelib.MyImageView.OnMeasureListener;
 import org.fireking.app.imagelib.NativeImageLoader.NativeImageCallBack;
@@ -12,16 +15,19 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
@@ -30,14 +36,18 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.PopupWindow.OnDismissListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * 
  * @author fireking
  * 
  */
-public class PicSelectActivity extends BaseActivity {
+public class PicSelectActivity extends BaseActivity implements
+		OnItemClickListener {
+	private static final int PHOTO_GRAPH = 1;// 拍照
 
 	GridView gridView;
 	PicSelectAdapter adapter;
@@ -47,6 +57,8 @@ public class PicSelectActivity extends BaseActivity {
 
 	TextView back;
 
+	String fileName;// 存贮文件名
+	String dirPath;// 存贮文件路径
 	static final int SCAN_OK = 0x1001;
 
 	static boolean isOpened = false;
@@ -110,10 +122,6 @@ public class PicSelectActivity extends BaseActivity {
 				} else {
 					if (popWindow != null) {
 						popWindow.dismiss();
-						WindowManager.LayoutParams ll = getWindow()
-								.getAttributes();
-						ll.alpha = 1f;
-						getWindow().setAttributes(ll);
 					}
 				}
 			}
@@ -124,7 +132,73 @@ public class PicSelectActivity extends BaseActivity {
 		gridView.setAdapter(adapter);
 		adapter.setOnImageSelectedListener(onImageSelectedListener);
 		showPic();
+		gridView.setOnItemClickListener(this);
 	}
+
+	/**
+	 * 调用系统相机拍照
+	 */
+	private void takePhoto() {
+		if (Environment.getExternalStorageState().equals(
+				Environment.MEDIA_MOUNTED)) {
+			fileName = getFileName();
+			System.out.println(Environment.getExternalStorageDirectory()
+					.toString());
+			System.out.println(Environment.getExternalStorageDirectory()
+					.getAbsolutePath());
+			dirPath = Environment.getExternalStorageDirectory().getPath()
+					+ Config.getSavePath();
+			File tempFile = new File(dirPath);
+			if (!tempFile.exists()) {
+				tempFile.mkdirs();
+			}
+			File saveFile = new File(tempFile, fileName + ".jpg");
+			Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+			intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(saveFile));
+			startActivityForResult(intent, PHOTO_GRAPH);
+		} else {
+			Toast.makeText(PicSelectActivity.this, "未检测到内存卡，拍照功能不可使用!",
+					Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		System.out.println("..." + requestCode + ".." + resultCode + "..."
+				+ data);
+		if (requestCode == PHOTO_GRAPH && resultCode == RESULT_OK) {
+			List<ImageBean> selecteds = new ArrayList<ImageBean>();
+			selecteds.add(new ImageBean(null, 0l, null, dirPath + "/"
+					+ fileName + ".jpg", false));
+			Intent intent = new Intent();
+			intent.putExtra(IMAGES, (Serializable) selecteds);
+			setResult(RESULT_OK, intent);
+			finish();
+		}
+	}
+
+	/**
+	 * 随机生成拍照的文件名称
+	 */
+	private String getFileName() {
+		StringBuffer sb = new StringBuffer();
+		Calendar calendar = Calendar.getInstance();
+		long millis = calendar.getTimeInMillis();
+		String[] dictionaries = { "A", "B", "C", "D", "E", "F", "G", "H", "I",
+				"J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
+				"V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g",
+				"h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
+				"t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4",
+				"5", "6", "7", "8", "9" };
+		sb.append("dzc");
+		sb.append(millis);
+		Random random = new Random();
+		for (int i = 0; i < 5; i++) {
+			sb.append(dictionaries[random.nextInt(dictionaries.length - 1)]);
+		}
+		return sb.toString();
+	};
 
 	OnImageSelectedCountListener onImageSelectedCountListener = new OnImageSelectedCountListener() {
 
@@ -219,6 +293,15 @@ public class PicSelectActivity extends BaseActivity {
 				listView);
 		listView.setAdapter(albumAdapter);
 		albumAdapter.setData(mAlbumBean);
+		mPopupWindow.setOnDismissListener(new OnDismissListener() {
+
+			@Override
+			public void onDismiss() {
+				WindowManager.LayoutParams ll = getWindow().getAttributes();
+				ll.alpha = 1f;
+				getWindow().setAttributes(ll);
+			}
+		});
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -227,9 +310,6 @@ public class PicSelectActivity extends BaseActivity {
 				adapter.taggle(b);
 				// 更改选中的文字
 				album.setText(b.folderName);
-				WindowManager.LayoutParams ll = getWindow().getAttributes();
-				ll.alpha = 1f;
-				getWindow().setAttributes(ll);
 				mPopupWindow.dismiss();
 			}
 		});
@@ -338,4 +418,13 @@ public class PicSelectActivity extends BaseActivity {
 		public TextView album_name;
 		public TextView album_count;
 	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		if (position == 0) {
+			takePhoto();
+		}
+	}
+
 }

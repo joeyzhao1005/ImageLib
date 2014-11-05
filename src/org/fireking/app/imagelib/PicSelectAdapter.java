@@ -8,7 +8,6 @@ import org.fireking.app.imagelib.PicSelectActivity.OnImageSelectedListener;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Point;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -17,7 +16,6 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.nineoldandroids.animation.AnimatorSet;
@@ -92,55 +90,57 @@ public class PicSelectAdapter extends BaseAdapter {
 
 		viewHolder.mImageView.setTag(ib.path);
 
-		viewHolder.mCheckBox
-				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+		if (index == 0) {
+			viewHolder.mImageView.setImageResource(R.drawable.tk_photo);
+		} else {
+			viewHolder.mCheckBox
+					.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-					@Override
-					public void onCheckedChanged(CompoundButton buttonView,
-							boolean isChecked) {
-						System.out.println("---onCheckedChanged");
-						int count = onImageSelectedCountListener
-								.getImageSelectedCount();
-						if (count == Config.limit && isChecked) {
-							Toast.makeText(context,
-									"最多只能现在" + Config.limit + "张图片",
-									Toast.LENGTH_SHORT).show();
-							viewHolder.mCheckBox.setChecked(ib.isChecked);
-						} else {
-							// 如果是未选中的CheckBox,则添加动画
-							if (!ib.isChecked && isChecked) {
-								addAnimation(viewHolder.mCheckBox);
+						@Override
+						public void onCheckedChanged(CompoundButton buttonView,
+								boolean isChecked) {
+							int count = onImageSelectedCountListener
+									.getImageSelectedCount();
+							if (count == Config.limit && isChecked) {
+								Toast.makeText(context,
+										"最多只能现在" + Config.limit + "张图片",
+										Toast.LENGTH_SHORT).show();
+								viewHolder.mCheckBox.setChecked(ib.isChecked);
+							} else {
+								// 如果是未选中的CheckBox,则添加动画
+								if (!ib.isChecked && isChecked) {
+									addAnimation(viewHolder.mCheckBox);
+								}
+								ib.isChecked = isChecked;
 							}
-							ib.isChecked = isChecked;
+							onImageSelectedListener.notifyChecked();
 						}
-						onImageSelectedListener.notifyChecked();
-					}
-				});
-		System.out.println("-ib.isChecked- " + ib.isChecked + "p:" + index);
-		if (ib.isChecked) {
-			viewHolder.mCheckBox.setChecked(true);
-		} else {
-			viewHolder.mCheckBox.setChecked(false);
-		}
+					});
+			if (ib.isChecked) {
+				viewHolder.mCheckBox.setChecked(true);
+			} else {
+				viewHolder.mCheckBox.setChecked(false);
+			}
 
-		Bitmap bitmap = NativeImageLoader.getInstance().loadNativeImage(
-				ib.path, mPoint, new NativeImageCallBack() {
+			Bitmap bitmap = NativeImageLoader.getInstance().loadNativeImage(
+					ib.path, mPoint, new NativeImageCallBack() {
 
-					@Override
-					public void onImageLoader(Bitmap bitmap, String path) {
-						ImageView mImageView = (ImageView) mGridView
-								.findViewWithTag(ib.path);
-						if (bitmap != null && mImageView != null) {
-							mImageView.setImageBitmap(bitmap);
+						@Override
+						public void onImageLoader(Bitmap bitmap, String path) {
+							ImageView mImageView = (ImageView) mGridView
+									.findViewWithTag(ib.path);
+							if (bitmap != null && mImageView != null) {
+								mImageView.setImageBitmap(bitmap);
+							}
 						}
-					}
-				});
+					});
 
-		if (bitmap != null) {
-			viewHolder.mImageView.setImageBitmap(bitmap);
-		} else {
-			viewHolder.mImageView
-					.setImageResource(R.drawable.friends_sends_pictures_no);
+			if (bitmap != null) {
+				viewHolder.mImageView.setImageBitmap(bitmap);
+			} else {
+				viewHolder.mImageView
+						.setImageResource(R.drawable.friends_sends_pictures_no);
+			}
 		}
 		return convertView;
 	}

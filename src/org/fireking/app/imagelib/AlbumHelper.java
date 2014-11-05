@@ -62,10 +62,12 @@ public class AlbumHelper {
 			Map.Entry<String, List<ImageBean>> entry = iterator.next();
 			String parentName = entry.getKey();
 			ImageBean b = entry.getValue().get(0);
-			mAlbumBeans.add(new AlbumBean(parentName, entry.getValue().size(),
-					entry.getValue(), b.path));
+			AlbumBean tempAlbumBean = new AlbumBean(parentName, entry
+					.getValue().size(), entry.getValue(), b.path);
+			// 在第一个位置设置为相机图
+			tempAlbumBean.sets.add(0, new ImageBean());
+			mAlbumBeans.add(tempAlbumBean);
 		}
-		System.out.println(mAlbumBeans.toString());
 		return mAlbumBeans;
 	}
 

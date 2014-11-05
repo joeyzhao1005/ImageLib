@@ -18,6 +18,7 @@ import android.os.Message;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -44,6 +45,8 @@ public class PicSelectActivity extends BaseActivity {
 	TextView complete;
 	TextView preView;
 
+	TextView back;
+
 	static final int SCAN_OK = 0x1001;
 
 	static boolean isOpened = false;
@@ -59,9 +62,16 @@ public class PicSelectActivity extends BaseActivity {
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		setContentView(R.layout.the_picture_selection);
+		back = (TextView) this.findViewById(R.id.back);
 		album = (TextView) this.findViewById(R.id.album);
 		complete = (TextView) this.findViewById(R.id.complete);
 		preView = (TextView) this.findViewById(R.id.preview);
+		back.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
 		preView.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -87,6 +97,9 @@ public class PicSelectActivity extends BaseActivity {
 			public void onClick(View v) {
 				if (!isOpened && popWindow != null) {
 					height = getWindow().getDecorView().getHeight();
+					WindowManager.LayoutParams ll = getWindow().getAttributes();
+					ll.alpha = 0.3f;
+					getWindow().setAttributes(ll);
 					popWindow.showAtLocation(
 							findViewById(android.R.id.content),
 							Gravity.NO_GRAVITY,
@@ -95,8 +108,13 @@ public class PicSelectActivity extends BaseActivity {
 									- CommonsUitls.dip2px(
 											PicSelectActivity.this, 448));
 				} else {
-					if (popWindow != null)
+					if (popWindow != null) {
 						popWindow.dismiss();
+						WindowManager.LayoutParams ll = getWindow()
+								.getAttributes();
+						ll.alpha = 1f;
+						getWindow().setAttributes(ll);
+					}
 				}
 			}
 		});
@@ -126,7 +144,6 @@ public class PicSelectActivity extends BaseActivity {
 			// 改变预览统计
 			preView.setText("预览(" + selected + "/" + Config.limit + ")");
 		}
-
 	};
 
 	private void showPic() {
@@ -148,7 +165,8 @@ public class PicSelectActivity extends BaseActivity {
 			super.handleMessage(msg);
 			if (SCAN_OK == msg.what) {
 				mAlbumBean = (List<AlbumBean>) msg.obj;
-				adapter.taggle(mAlbumBean.get(0));
+				AlbumBean b = mAlbumBean.get(0);
+				adapter.taggle(b);
 				popWindow = showPopWindow();
 			}
 		};
@@ -202,7 +220,6 @@ public class PicSelectActivity extends BaseActivity {
 		listView.setAdapter(albumAdapter);
 		albumAdapter.setData(mAlbumBean);
 		listView.setOnItemClickListener(new OnItemClickListener() {
-
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
@@ -210,6 +227,9 @@ public class PicSelectActivity extends BaseActivity {
 				adapter.taggle(b);
 				// 更改选中的文字
 				album.setText(b.folderName);
+				WindowManager.LayoutParams ll = getWindow().getAttributes();
+				ll.alpha = 1f;
+				getWindow().setAttributes(ll);
 				mPopupWindow.dismiss();
 			}
 		});

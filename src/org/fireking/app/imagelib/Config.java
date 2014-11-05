@@ -11,4 +11,8 @@ public class Config {
 	public static void setLimit(int limit) {
 		Config.limit = limit;
 	}
+
+	public static int getLimit() {
+		return limit;
+	}
 }

@@ -239,9 +239,16 @@ public class PicSelectActivity extends BaseActivity implements
 			super.handleMessage(msg);
 			if (SCAN_OK == msg.what) {
 				mAlbumBean = (List<AlbumBean>) msg.obj;
-				AlbumBean b = mAlbumBean.get(0);
-				adapter.taggle(b);
-				popWindow = showPopWindow();
+				if (mAlbumBean != null && mAlbumBean.size() != 0) {
+					AlbumBean b = mAlbumBean.get(0);
+					adapter.taggle(b);
+					popWindow = showPopWindow();
+				} else {
+					List<ImageBean> sets = new ArrayList<ImageBean>();
+					sets.add(new ImageBean());
+					AlbumBean b = new AlbumBean("", 1, sets, "");
+					adapter.taggle(b);
+				}
 			}
 		};
 	};

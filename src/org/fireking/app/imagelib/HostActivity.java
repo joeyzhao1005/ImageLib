@@ -46,33 +46,51 @@ public class HostActivity extends FragmentActivity {
 		imagesList
 				.add("http://d.hiphotos.baidu.com/image/pic/item/6a63f6246b600c33c435e8b7194c510fd9f9a104.jpg");
 		imagesList
-				.add("http://c.hiphotos.baidu.com/image/pic/item/500fd9f9d72a60596f5cd7652b34349b033bba04.jpg");
+				.add("http://img5.imgtn.bdimg.com/it/u=1897883016,3898021083&fm=21&gp=0.jpg");
 		imagesList
-				.add("http://e.hiphotos.baidu.com/image/pic/item/b90e7bec54e736d1630e8b6498504fc2d56269b8.jpg");
+				.add("http://img2.imgtn.bdimg.com/it/u=1080950228,1050582948&fm=21&gp=0.jpg");
 		imagesList
-				.add("http://b.hiphotos.baidu.com/image/pic/item/8d5494eef01f3a294cd5d2a29a25bc315c607cb8.jpg");
+				.add("http://img3.imgtn.bdimg.com/it/u=1765096515,584663826&fm=21&gp=0.jpg");
 		imagesList
-				.add("http://d.hiphotos.baidu.com/image/pic/item/023b5bb5c9ea15cead3d6f2ab5003af33b87b2c6.jpg");
+				.add("http://img2.imgtn.bdimg.com/it/u=1942198271,3688690363&fm=21&gp=0.jpg");
 		imagesList
-				.add("http://g.hiphotos.baidu.com/image/pic/item/9e3df8dcd100baa1cb1cc9984410b912c8fc2ee4.jpg");
+				.add("http://img1.imgtn.bdimg.com/it/u=280482683,1427496842&fm=21&gp=0.jpg");
 		imagesList
-				.add("http://h.hiphotos.baidu.com/image/pic/item/35a85edf8db1cb1336c81477de54564e92584b34.jpg");
+				.add("http://img4.imgtn.bdimg.com/it/u=213065468,2742478796&fm=21&gp=0.jpg");
 		imagesList
-				.add("http://e.hiphotos.baidu.com/image/pic/item/37d12f2eb9389b502b5ec8368635e5dde7116e34.jpg");
+				.add("http://img4.imgtn.bdimg.com/it/u=699789675,3758861195&fm=21&gp=0.jpg");
 		imagesList
-				.add("http://g.hiphotos.baidu.com/image/pic/item/d009b3de9c82d158c2b2f42a820a19d8bc3e427c.jpg");
+				.add("http://img0.imgtn.bdimg.com/it/u=3778595245,3376395273&fm=23&gp=0.jpg");
 		imagesList
-				.add("http://e.hiphotos.baidu.com/image/pic/item/4afbfbedab64034f246e617dacc379310a551d2d.jpg");
+				.add("http://img4.imgtn.bdimg.com/it/u=885125359,2667289101&fm=23&gp=0.jpg");
 		imagesList
-				.add("http://b.hiphotos.baidu.com/image/pic/item/8435e5dde71190ef9f463825cc1b9d16fcfa608f.jpg");
+				.add("http://img4.imgtn.bdimg.com/it/u=774122451,2872640083&fm=23&gp=0.jpg");
 		imagesList
-				.add("http://f.hiphotos.baidu.com/image/pic/item/d833c895d143ad4bec56de4c80025aafa50f06c5.jpg");
+				.add("http://img2.imgtn.bdimg.com/it/u=2706350221,3692178365&fm=23&gp=0.jpg");
 		imagesList
-				.add("http://h.hiphotos.baidu.com/image/pic/item/caef76094b36acafe9cd0e707ed98d1001e99c09.jpg");
+				.add("http://img5.imgtn.bdimg.com/it/u=2102586672,4220894331&fm=23&gp=0.jpg");
 		imagesList
-				.add("http://b.hiphotos.baidu.com/image/pic/item/43a7d933c895d1436cd4f9bb71f082025baf0783.jpg");
+				.add("http://img4.imgtn.bdimg.com/it/u=1417739343,1025798077&fm=23&gp=0.jpg");
 		imagesList
-				.add("http://g.hiphotos.baidu.com/image/pic/item/0eb30f2442a7d9338e2370bcaf4bd11372f00171.jpg");
+				.add("http://img4.imgtn.bdimg.com/it/u=2169800527,4077307855&fm=23&gp=0.jpg");
+		imagesList
+				.add("http://img1.imgtn.bdimg.com/it/u=3833673073,3269827972&fm=23&gp=0.jpg");
+		imagesList
+				.add("http://img5.imgtn.bdimg.com/it/u=1979450204,3496514545&fm=23&gp=0.jpg");
+		imagesList
+				.add("http://img1.imgtn.bdimg.com/it/u=3738379885,2881801084&fm=23&gp=0.jpg");
+		imagesList
+				.add("http://img1.imgtn.bdimg.com/it/u=3833673073,3269827972&fm=23&gp=0.jpg");
+		imagesList
+				.add("http://img0.imgtn.bdimg.com/it/u=629994361,4157197701&fm=23&gp=0.jpg");
+		imagesList
+				.add("http://img1.imgtn.bdimg.com/it/u=3467200855,3285163930&fm=23&gp=0.jpg");
+		imagesList
+				.add("http://img0.imgtn.bdimg.com/it/u=204993536,573935908&fm=23&gp=0.jpg");
+		imagesList
+				.add("http://img2.imgtn.bdimg.com/it/u=4206973903,1785707081&fm=23&gp=0.jpg");
+		imagesList
+				.add("http://img1.imgtn.bdimg.com/it/u=3454172964,633414511&fm=23&gp=0.jpg");
 		intent.putExtra("images", (Serializable) imagesList);
 		intent.putExtra("position", 5);
 		startActivity(intent);

@@ -28,7 +28,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="org.fireking.app.imagelib.PicSelectActivity"
+            android:name="org.fireking.app.imagelib.widget.PicSelectActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="org.fireking.app.imagelib.widget.ImageBrowserActivity"
             android:screenOrientation="portrait" >
         </activity>
     </application>

@@ -1,4 +1,4 @@
-package org.fireking.app.imagelib;
+package org.fireking.app.imagelib.tools;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

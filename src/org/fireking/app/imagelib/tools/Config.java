@@ -1,4 +1,4 @@
-package org.fireking.app.imagelib;
+package org.fireking.app.imagelib.tools;
 
 /**
  * 公共配置文件
@@ -8,7 +8,7 @@ package org.fireking.app.imagelib;
  */
 public class Config {
 
-	static int limit;
+	public static int limit;
 	static String savePathString;
 
 	static {

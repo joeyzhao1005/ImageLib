@@ -1,4 +1,4 @@
-package org.fireking.app.imagelib;
+package org.fireking.app.imagelib.tools;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+
+import org.fireking.app.imagelib.entity.AlbumBean;
+import org.fireking.app.imagelib.entity.ImageBean;
 
 import android.content.ContentResolver;
 import android.content.Context;

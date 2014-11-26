@@ -1,4 +1,4 @@
-package org.fireking.app.imagelib;
+package org.fireking.app.imagelib.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

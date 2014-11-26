@@ -1,9 +1,18 @@
-package org.fireking.app.imagelib;
+package org.fireking.app.imagelib.widget;
 
-import org.fireking.app.imagelib.MyImageView.OnMeasureListener;
-import org.fireking.app.imagelib.NativeImageLoader.NativeImageCallBack;
-import org.fireking.app.imagelib.PicSelectActivity.OnImageSelectedCountListener;
-import org.fireking.app.imagelib.PicSelectActivity.OnImageSelectedListener;
+import org.fireking.app.imagelib.R;
+import org.fireking.app.imagelib.R.drawable;
+import org.fireking.app.imagelib.R.id;
+import org.fireking.app.imagelib.R.layout;
+import org.fireking.app.imagelib.entity.AlbumBean;
+import org.fireking.app.imagelib.entity.ImageBean;
+import org.fireking.app.imagelib.tools.Config;
+import org.fireking.app.imagelib.tools.NativeImageLoader;
+import org.fireking.app.imagelib.tools.NativeImageLoader.NativeImageCallBack;
+import org.fireking.app.imagelib.view.MyImageView;
+import org.fireking.app.imagelib.view.MyImageView.OnMeasureListener;
+import org.fireking.app.imagelib.widget.PicSelectActivity.OnImageSelectedCountListener;
+import org.fireking.app.imagelib.widget.PicSelectActivity.OnImageSelectedListener;
 
 import android.content.Context;
 import android.graphics.Bitmap;

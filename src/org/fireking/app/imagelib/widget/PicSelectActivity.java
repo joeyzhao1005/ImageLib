@@ -1,4 +1,4 @@
-package org.fireking.app.imagelib;
+package org.fireking.app.imagelib.widget;
 
 import java.io.File;
 import java.io.Serializable;
@@ -7,8 +7,19 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
-import org.fireking.app.imagelib.MyImageView.OnMeasureListener;
-import org.fireking.app.imagelib.NativeImageLoader.NativeImageCallBack;
+import org.fireking.app.imagelib.R;
+import org.fireking.app.imagelib.R.drawable;
+import org.fireking.app.imagelib.R.id;
+import org.fireking.app.imagelib.R.layout;
+import org.fireking.app.imagelib.entity.AlbumBean;
+import org.fireking.app.imagelib.entity.ImageBean;
+import org.fireking.app.imagelib.tools.AlbumHelper;
+import org.fireking.app.imagelib.tools.Config;
+import org.fireking.app.imagelib.tools.NativeImageLoader;
+import org.fireking.app.imagelib.tools.Uitls;
+import org.fireking.app.imagelib.tools.NativeImageLoader.NativeImageCallBack;
+import org.fireking.app.imagelib.view.MyImageView;
+import org.fireking.app.imagelib.view.MyImageView.OnMeasureListener;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +32,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.support.v4.app.FragmentActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,7 +57,7 @@ import android.widget.Toast;
  * @author fireking
  * 
  */
-public class PicSelectActivity extends BaseActivity implements
+public class PicSelectActivity extends FragmentActivity implements
 		OnItemClickListener {
 	private static final int PHOTO_GRAPH = 1;// ≈ƒ’’
 
@@ -114,11 +126,8 @@ public class PicSelectActivity extends BaseActivity implements
 					getWindow().setAttributes(ll);
 					popWindow.showAtLocation(
 							findViewById(android.R.id.content),
-							Gravity.NO_GRAVITY,
-							0,
-							height
-									- CommonsUitls.dip2px(
-											PicSelectActivity.this, 448));
+							Gravity.NO_GRAVITY, 0,
+							height - Uitls.dip2px(PicSelectActivity.this, 448));
 				} else {
 					if (popWindow != null) {
 						popWindow.dismiss();
@@ -291,8 +300,8 @@ public class PicSelectActivity extends BaseActivity implements
 		LayoutInflater inflater = LayoutInflater.from(this);
 		View view = inflater.inflate(R.layout.the_picture_selection_pop, null);
 		final PopupWindow mPopupWindow = new PopupWindow(view,
-				LayoutParams.MATCH_PARENT, CommonsUitls.dip2px(
-						PicSelectActivity.this, 400), true);
+				LayoutParams.MATCH_PARENT, Uitls.dip2px(PicSelectActivity.this,
+						400), true);
 		mPopupWindow.setOutsideTouchable(true);
 		mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
 		ListView listView = (ListView) view.findViewById(R.id.list);

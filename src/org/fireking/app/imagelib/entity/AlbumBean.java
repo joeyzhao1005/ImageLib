@@ -1,4 +1,4 @@
-package org.fireking.app.imagelib;
+package org.fireking.app.imagelib.entity;
 
 import java.util.ArrayList;
 import java.util.List;

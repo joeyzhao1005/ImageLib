@@ -36,8 +36,6 @@ public class HostActivity extends FragmentActivity {
 		Intent intent = new Intent(this, ImageBrowserActivity.class);
 		List<String> imagesList = new ArrayList<String>();
 		imagesList
-				.add("http://h.hiphotos.baidu.com/image/pic/item/5366d0160924ab1828b7c95336fae6cd7b890b34.jpg");
-		imagesList
 				.add("http://a.hiphotos.baidu.com/image/pic/item/18d8bc3eb13533fae206ea2cabd3fd1f41345b7b.jpg");
 		imagesList
 				.add("http://g.hiphotos.baidu.com/image/pic/item/1ad5ad6eddc451da9f2e8e8cb5fd5266d11632f8.jpg");
@@ -45,54 +43,179 @@ public class HostActivity extends FragmentActivity {
 				.add("http://c.hiphotos.baidu.com/image/pic/item/b3b7d0a20cf431ad99736b5d4836acaf2edd9834.jpg");
 		imagesList
 				.add("http://d.hiphotos.baidu.com/image/pic/item/6a63f6246b600c33c435e8b7194c510fd9f9a104.jpg");
+
 		imagesList
-				.add("http://img5.imgtn.bdimg.com/it/u=1897883016,3898021083&fm=21&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383299_1976.jpg");
 		imagesList
-				.add("http://img2.imgtn.bdimg.com/it/u=1080950228,1050582948&fm=21&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383291_6518.jpg");
 		imagesList
-				.add("http://img3.imgtn.bdimg.com/it/u=1765096515,584663826&fm=21&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383291_8239.jpg");
 		imagesList
-				.add("http://img2.imgtn.bdimg.com/it/u=1942198271,3688690363&fm=21&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383290_9329.jpg");
 		imagesList
-				.add("http://img1.imgtn.bdimg.com/it/u=280482683,1427496842&fm=21&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383290_1042.jpg");
 		imagesList
-				.add("http://img4.imgtn.bdimg.com/it/u=213065468,2742478796&fm=21&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383275_3977.jpg");
 		imagesList
-				.add("http://img4.imgtn.bdimg.com/it/u=699789675,3758861195&fm=21&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383265_8550.jpg");
 		imagesList
-				.add("http://img0.imgtn.bdimg.com/it/u=3778595245,3376395273&fm=23&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383264_3954.jpg");
 		imagesList
-				.add("http://img4.imgtn.bdimg.com/it/u=885125359,2667289101&fm=23&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383264_4787.jpg");
 		imagesList
-				.add("http://img4.imgtn.bdimg.com/it/u=774122451,2872640083&fm=23&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383264_8243.jpg");
 		imagesList
-				.add("http://img2.imgtn.bdimg.com/it/u=2706350221,3692178365&fm=23&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383248_3693.jpg");
 		imagesList
-				.add("http://img5.imgtn.bdimg.com/it/u=2102586672,4220894331&fm=23&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383243_5120.jpg");
 		imagesList
-				.add("http://img4.imgtn.bdimg.com/it/u=1417739343,1025798077&fm=23&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383242_3127.jpg");
 		imagesList
-				.add("http://img4.imgtn.bdimg.com/it/u=2169800527,4077307855&fm=23&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383242_9576.jpg");
 		imagesList
-				.add("http://img1.imgtn.bdimg.com/it/u=3833673073,3269827972&fm=23&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383242_1721.jpg");
 		imagesList
-				.add("http://img5.imgtn.bdimg.com/it/u=1979450204,3496514545&fm=23&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383219_5806.jpg");
 		imagesList
-				.add("http://img1.imgtn.bdimg.com/it/u=3738379885,2881801084&fm=23&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383214_7794.jpg");
 		imagesList
-				.add("http://img1.imgtn.bdimg.com/it/u=3833673073,3269827972&fm=23&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383213_4418.jpg");
 		imagesList
-				.add("http://img0.imgtn.bdimg.com/it/u=629994361,4157197701&fm=23&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383213_3557.jpg");
 		imagesList
-				.add("http://img1.imgtn.bdimg.com/it/u=3467200855,3285163930&fm=23&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383210_8779.jpg");
 		imagesList
-				.add("http://img0.imgtn.bdimg.com/it/u=204993536,573935908&fm=23&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383172_4577.jpg");
 		imagesList
-				.add("http://img2.imgtn.bdimg.com/it/u=4206973903,1785707081&fm=23&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383166_3407.jpg");
 		imagesList
-				.add("http://img1.imgtn.bdimg.com/it/u=3454172964,633414511&fm=23&gp=0.jpg");
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383166_2224.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383166_7301.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383165_7197.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383150_8410.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383131_3736.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383130_5094.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383130_7393.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383129_8813.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383100_3554.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383093_7894.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383092_2432.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383092_3071.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383091_3119.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383059_6589.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383059_8814.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383059_2237.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383058_4330.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406383038_3602.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382942_3079.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382942_8125.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382942_4881.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382941_4559.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382941_3845.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382924_8955.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382923_2141.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382923_8437.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382922_6166.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382922_4843.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382905_5804.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382904_3362.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382904_2312.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382904_4960.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382900_2418.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382881_4490.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382881_5935.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382880_3865.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382880_4662.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382879_2553.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382862_5375.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382862_1748.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382861_7618.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382861_8606.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382861_8949.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382841_9821.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382840_6603.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382840_2405.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382840_6354.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382839_5779.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382810_7578.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382810_2436.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382809_3883.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382809_6269.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382808_4179.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382790_8326.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382789_7174.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382789_5170.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382789_4118.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382788_9532.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382767_3184.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382767_4772.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382766_4924.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382766_5762.jpg");
+		imagesList
+				.add("http://img.my.csdn.net/uploads/201407/26/1406382765_7341.jpg");
 		intent.putExtra("images", (Serializable) imagesList);
-		intent.putExtra("position", 5);
+		intent.putExtra("position", 2);
 		startActivity(intent);
 	}
 

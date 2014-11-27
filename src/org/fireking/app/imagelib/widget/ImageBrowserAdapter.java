@@ -46,7 +46,6 @@ public class ImageBrowserAdapter extends PagerAdapter {
 		// 这里进行图片的缓存操作
 		Picasso.with(context).load(mPhotos.get(position % mPhotos.size()))
 				.into(photoView);
-		photoView.setImageBitmap(bitmap);
 		container.addView(photoView, LayoutParams.MATCH_PARENT,
 				LayoutParams.MATCH_PARENT);
 		return photoView;

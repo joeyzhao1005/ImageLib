@@ -78,6 +78,14 @@ public class ImageBrowserActivity extends FragmentActivity implements
 			mSvpPager.setPageTransformer(true, new DepthPageTransformer());
 			mSvpPager.setCurrentItem(mPosition, false);
 		}
+		if (mTotal == 1) {
+			mPtvPage.setText("1/1");
+			mAdapter = new ImageBrowserAdapter(this, imagesList);
+			mSvpPager.setAdapter(mAdapter);
+			mSvpPager.setPageTransformer(true, new DepthPageTransformer());
+			mSvpPager.setCurrentItem(mPosition, false);
+		}
+
 	}
 
 	@Override
@@ -111,20 +119,19 @@ public class ImageBrowserActivity extends FragmentActivity implements
 				mSvpPager.setAdapter(mAdapter);
 				mSvpPager.setCurrentItem(mPosition, false);
 			} else {
-				System.out.println("mTotal=-size" + mTotal);
-				finish();
+				onBackPressed();
 			}
 		} else if (view.getId() == R.id.back) {
-			Intent data = new Intent();
-			data.putExtra("M_LIST", (Serializable) imagesList);
-			setResult(RESULT_OK, data);
-			ImageBrowserActivity.this.finish();
+			onBackPressed();
 		}
 	}
 
 	@Override
 	public void onBackPressed() {
-
+		Intent data = new Intent();
+		data.putExtra("M_LIST", (Serializable) imagesList);
+		setResult(RESULT_OK, data);
+		ImageBrowserActivity.this.finish();
 	}
 
 }

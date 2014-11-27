@@ -114,7 +114,7 @@ public class PicSelectAdapter extends BaseAdapter {
 									.getImageSelectedCount();
 							if (count == Config.limit && isChecked) {
 								Toast.makeText(context,
-										"���ֻ������" + Config.limit + "��ͼƬ",
+										"只能选择" + Config.limit + "张",
 										Toast.LENGTH_SHORT).show();
 								viewHolder.mCheckBox.setChecked(ib.isChecked);
 							} else {

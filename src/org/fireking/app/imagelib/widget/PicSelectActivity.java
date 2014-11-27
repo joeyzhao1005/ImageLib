@@ -167,7 +167,7 @@ public class PicSelectActivity extends FragmentActivity implements
 			intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(saveFile));
 			startActivityForResult(intent, PHOTO_GRAPH);
 		} else {
-			Toast.makeText(PicSelectActivity.this, "δ��⵽�ڴ濨�����չ��ܲ���ʹ��!",
+			Toast.makeText(PicSelectActivity.this, "未检测到CDcard，拍照不可用!",
 					Toast.LENGTH_SHORT).show();
 		}
 	}
@@ -335,7 +335,7 @@ public class PicSelectActivity extends FragmentActivity implements
 	class AlbumAdapter extends BaseAdapter {
 		LayoutInflater inflater;
 		List<AlbumBean> albums;
-		private Point mPoint = new Point(0, 0);// ������װImageView�Ŀ�͸ߵĶ���
+		private Point mPoint = new Point(0, 0);
 		ListView mListView;
 
 		public AlbumAdapter(Context context, ListView mListView) {

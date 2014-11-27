@@ -33,7 +33,7 @@ import com.nineoldandroids.animation.ObjectAnimator;
 public class PicSelectAdapter extends BaseAdapter {
 
 	Context context;
-	private Point mPoint = new Point(0, 0);// ÓÃÀ´·â×°ImageViewµÄ¿íºÍ¸ßµÄ¶ÔÏó
+	private Point mPoint = new Point(0, 0);
 	AlbumBean bean;
 	private GridView mGridView;
 	OnImageSelectedListener onImageSelectedListener;
@@ -114,11 +114,10 @@ public class PicSelectAdapter extends BaseAdapter {
 									.getImageSelectedCount();
 							if (count == Config.limit && isChecked) {
 								Toast.makeText(context,
-										"×î¶àÖ»ÄÜÏÖÔÚ" + Config.limit + "ÕÅÍ¼Æ¬",
+										"ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + Config.limit + "ï¿½ï¿½Í¼Æ¬",
 										Toast.LENGTH_SHORT).show();
 								viewHolder.mCheckBox.setChecked(ib.isChecked);
 							} else {
-								// Èç¹ûÊÇÎ´Ñ¡ÖĞµÄCheckBox,ÔòÌí¼Ó¶¯»­
 								if (!ib.isChecked && isChecked) {
 									addAnimation(viewHolder.mCheckBox);
 								}
@@ -157,7 +156,6 @@ public class PicSelectAdapter extends BaseAdapter {
 	}
 
 	/**
-	 * ¸øCheckBox¼Óµã»÷¶¯»­£¬ÀûÓÃ¿ªÔ´¿ânineoldandroidsÉèÖÃ¶¯»­
 	 * 
 	 * @param view
 	 */

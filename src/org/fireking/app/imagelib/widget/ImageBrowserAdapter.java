@@ -3,23 +3,25 @@ package org.fireking.app.imagelib.widget;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.squareup.picasso.Picasso;
+import org.fireking.app.imagelib.entity.ImageBean;
 
 import uk.co.senab.photoview.PhotoView;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 public class ImageBrowserAdapter extends PagerAdapter {
 
-	private List<String> mPhotos = new ArrayList<String>();
+	private List<ImageBean> mPhotos = new ArrayList<ImageBean>();
 	Context context;
 
-	public ImageBrowserAdapter(Context context, List<String> photos) {
+	public ImageBrowserAdapter(Context context, List<ImageBean> photos) {
 		this.context = context;
 		if (photos != null) {
 			mPhotos = photos;
@@ -42,9 +44,8 @@ public class ImageBrowserAdapter extends PagerAdapter {
 	@Override
 	public View instantiateItem(ViewGroup container, int position) {
 		PhotoView photoView = new PhotoView(container.getContext());
-		Bitmap bitmap = null;
 		// 这里进行图片的缓存操作
-		Picasso.with(context).load(mPhotos.get(position % mPhotos.size()))
+		Picasso.with(context).load(mPhotos.get(position % mPhotos.size()).path)
 				.into(photoView);
 		container.addView(photoView, LayoutParams.MATCH_PARENT,
 				LayoutParams.MATCH_PARENT);

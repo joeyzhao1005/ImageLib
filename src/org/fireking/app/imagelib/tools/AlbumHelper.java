@@ -19,7 +19,6 @@ import android.net.Uri;
 import android.provider.MediaStore;
 
 /**
- * 图片获取助手类
  * 
  * @author join
  * 
@@ -43,10 +42,6 @@ public class AlbumHelper {
 		return instance;
 	};
 
-	/**
-	 * 得到文件夹信息<br />
-	 * 保存文件夹集合,每个文件夹里包含n多个文件
-	 */
 	public List<AlbumBean> getFolders() {
 		Uri mImageUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
 
@@ -65,25 +60,19 @@ public class AlbumHelper {
 			Map.Entry<String, List<ImageBean>> entry = iterator.next();
 			String parentName = entry.getKey();
 			ImageBean b = entry.getValue().get(0);
-			// 这里将图片的数量递增一，递增的一个为相机显示图片
 			AlbumBean tempAlbumBean = new AlbumBean(parentName, entry
 					.getValue().size() + 1, entry.getValue(), b.path);
-			// 在第一个位置设置为相机图
+			// 鍦ㄧ0涓綅缃姞鍏ヤ簡鎷嶇収鍥剧墖
 			tempAlbumBean.sets.add(0, new ImageBean());
 			mAlbumBeans.add(tempAlbumBean);
 		}
 		return mAlbumBeans;
 	}
 
-	/**
-	 * 将获取的图片信息分组、装载<br />
-	 * 按文件夹分组
-	 */
 	private HashMap<String, List<ImageBean>> capacity(Cursor mCursor) {
 
 		HashMap<String, List<ImageBean>> beans = new HashMap<String, List<ImageBean>>();
 		while (mCursor.moveToNext()) {
-			// 得到图片数据路径
 			String path = mCursor.getString(mCursor
 					.getColumnIndex(MediaStore.Images.Media.DATA));
 

@@ -39,6 +39,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -46,6 +47,7 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.PopupWindow.OnDismissListener;
@@ -59,7 +61,7 @@ import android.widget.Toast;
  */
 public class PicSelectActivity extends FragmentActivity implements
 		OnItemClickListener {
-	private static final int PHOTO_GRAPH = 1;// ÅÄÕÕ
+	private static final int PHOTO_GRAPH = 1;// ï¿½ï¿½ï¿½ï¿½
 
 	GridView gridView;
 	PicSelectAdapter adapter;
@@ -69,8 +71,8 @@ public class PicSelectActivity extends FragmentActivity implements
 
 	TextView back;
 
-	String fileName;// ´æÖüÎÄ¼şÃû
-	String dirPath;// ´æÖüÎÄ¼şÂ·¾¶
+	String fileName;// æ–‡ä»¶åï¼Œè·¯å¾„
+	String dirPath;//
 	static final int SCAN_OK = 0x1001;
 
 	static boolean isOpened = false;
@@ -145,7 +147,6 @@ public class PicSelectActivity extends FragmentActivity implements
 	}
 
 	/**
-	 * µ÷ÓÃÏµÍ³Ïà»úÅÄÕÕ
 	 */
 	private void takePhoto() {
 		if (Environment.getExternalStorageState().equals(
@@ -166,7 +167,7 @@ public class PicSelectActivity extends FragmentActivity implements
 			intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(saveFile));
 			startActivityForResult(intent, PHOTO_GRAPH);
 		} else {
-			Toast.makeText(PicSelectActivity.this, "Î´¼ì²âµ½ÄÚ´æ¿¨£¬ÅÄÕÕ¹¦ÄÜ²»¿ÉÊ¹ÓÃ!",
+			Toast.makeText(PicSelectActivity.this, "Î´ï¿½ï¿½âµ½ï¿½Ú´æ¿¨ï¿½ï¿½ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½Ü²ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½!",
 					Toast.LENGTH_SHORT).show();
 		}
 	}
@@ -188,7 +189,6 @@ public class PicSelectActivity extends FragmentActivity implements
 	}
 
 	/**
-	 * Ëæ»úÉú³ÉÅÄÕÕµÄÎÄ¼şÃû³Æ
 	 */
 	private String getFileName() {
 		StringBuffer sb = new StringBuffer();
@@ -222,10 +222,10 @@ public class PicSelectActivity extends FragmentActivity implements
 		@Override
 		public void notifyChecked() {
 			selected = getSelectedCount();
-			// ¸Ä±äÍê³ÉÍ³¼Æ
-			complete.setText("Íê³É(" + selected + "/" + Config.limit + ")");
-			// ¸Ä±äÔ¤ÀÀÍ³¼Æ
-			preView.setText("Ô¤ÀÀ(" + selected + "/" + Config.limit + ")");
+			// ï¿½Ä±ï¿½ï¿½ï¿½ï¿½Í³ï¿½ï¿½
+			complete.setText("ï¿½ï¿½ï¿½(" + selected + "/" + Config.limit + ")");
+			// ï¿½Ä±ï¿½Ô¤ï¿½ï¿½Í³ï¿½ï¿½
+			preView.setText("Ô¤ï¿½ï¿½(" + selected + "/" + Config.limit + ")");
 		}
 	};
 
@@ -263,7 +263,7 @@ public class PicSelectActivity extends FragmentActivity implements
 	};
 
 	/**
-	 * »ñÈ¡Ñ¡ÖĞµÄÊıÖµ
+	 * ï¿½ï¿½È¡Ñ¡ï¿½Ğµï¿½ï¿½ï¿½Öµ
 	 * 
 	 * @return
 	 */
@@ -324,7 +324,7 @@ public class PicSelectActivity extends FragmentActivity implements
 					int position, long id) {
 				AlbumBean b = (AlbumBean) parent.getItemAtPosition(position);
 				adapter.taggle(b);
-				// ¸ü¸ÄÑ¡ÖĞµÄÎÄ×Ö
+				// ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½Ğµï¿½ï¿½ï¿½ï¿½ï¿½
 				album.setText(b.folderName);
 				mPopupWindow.dismiss();
 			}
@@ -335,7 +335,7 @@ public class PicSelectActivity extends FragmentActivity implements
 	class AlbumAdapter extends BaseAdapter {
 		LayoutInflater inflater;
 		List<AlbumBean> albums;
-		private Point mPoint = new Point(0, 0);// ÓÃÀ´·â×°ImageViewµÄ¿íºÍ¸ßµÄ¶ÔÏó
+		private Point mPoint = new Point(0, 0);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ImageViewï¿½Ä¿ï¿½Í¸ßµÄ¶ï¿½ï¿½ï¿½
 		ListView mListView;
 
 		public AlbumAdapter(Context context, ListView mListView) {

@@ -14,6 +14,11 @@ public class ImageBean implements Serializable {
 		super();
 	}
 
+	public ImageBean(String path) {
+		super();
+		this.path = path;
+	}
+
 	public ImageBean(String parentName, long size, String displayName,
 			String path, boolean isChecked) {
 		super();

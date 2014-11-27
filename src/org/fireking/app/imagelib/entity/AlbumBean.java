@@ -6,16 +6,12 @@ import java.util.Set;
 
 public class AlbumBean {
 
-	// 文件夹
 	public String folderName;
 
-	// 文件夹内文件数量
 	public int count;
 
-	// 文件
 	public List<ImageBean> sets = new ArrayList<ImageBean>();
 
-	// 缩略图
 	public String thumbnail;
 
 	public AlbumBean() {

@@ -222,10 +222,8 @@ public class PicSelectActivity extends FragmentActivity implements
 		@Override
 		public void notifyChecked() {
 			selected = getSelectedCount();
-			// �ı����ͳ��
-			complete.setText("���(" + selected + "/" + Config.limit + ")");
-			// �ı�Ԥ��ͳ��
-			preView.setText("Ԥ��(" + selected + "/" + Config.limit + ")");
+			complete.setText("完成(" + selected + "/" + Config.limit + ")");
+			preView.setText("预览(" + selected + "/" + Config.limit + ")");
 		}
 	};
 

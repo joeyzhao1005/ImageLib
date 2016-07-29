@@ -5,12 +5,12 @@
     android:layout_height="wrap_content"
     android:descendantFocusability="blocksDescendants" >
 
-    <org.fireking.app.imagelib.view.MyImageView
+    <com.kit.imagelib.view.MyImageView
         android:id="@+id/child_image"
         android:layout_width="fill_parent"
         android:layout_height="118dip"
-        android:background="@drawable/friends_sends_pictures_no"
-        android:scaleType="fitXY" />
+        android:background="#00000000"
+        android:scaleType="centerCrop" />
 
     <CheckBox
         android:id="@+id/child_checkbox"

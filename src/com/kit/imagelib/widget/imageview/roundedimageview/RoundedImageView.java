@@ -29,6 +29,7 @@ import android.net.Uri;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;
 import android.support.annotation.DrawableRes;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ImageView;
@@ -38,7 +39,7 @@ import  com.kit.imagelib.widget.imageview.roundedimageview.RoundedDrawable.Corne
 import com.kit.imagelib.R;
 
 @SuppressWarnings("UnusedDeclaration")
-public class RoundedImageView extends ImageView {
+public class RoundedImageView extends AppCompatImageView {
 
   // Constants for tile mode attributes
   private static final int TILE_MODE_UNDEFINED = -2;
@@ -427,7 +428,7 @@ public class RoundedImageView extends ImageView {
   }
 
   public void setBorderColor(@ColorRes int color) {
-    setBorderColor(ColorStateList.valueOf(color));
+    setBorderColor(getResources().getColorStateList(color));
   }
 
   public ColorStateList getBorderColors() {

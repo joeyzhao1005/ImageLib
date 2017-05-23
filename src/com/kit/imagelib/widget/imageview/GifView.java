@@ -274,7 +274,17 @@ public class GifView extends GifImageView implements IPhotoView {
         super.onDetachedFromWindow();
     }
 
-//    public boolean isAdapterWidth() {
+    @Override
+    public void setScaleLevels(float minimumScale, float mediumScale, float maximumScale) {
+
+    }
+
+    @Override
+    public void setOnScaleChangeListener(PhotoViewAttacher.OnScaleChangeListener onScaleChangeListener) {
+
+    }
+
+    //    public boolean isAdapterWidth() {
 //        return mAttacher.isAdapterWidth();
 //    }
 //

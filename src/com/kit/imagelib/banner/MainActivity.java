@@ -1,7 +1,7 @@
 package com.kit.imagelib.banner;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.LinearLayout;
 
 import com.kit.imagelib.R;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 
 @SuppressWarnings("ResourceType")
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
     Banner myPager; // 图片容器
     LinearLayout ovalLayout; // 圆点容器
     private ScrollImageController scrollImageView;

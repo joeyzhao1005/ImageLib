@@ -1,19 +1,27 @@
 apply plugin: 'com.android.library'
 
 dependencies {
-    compile fileTree(dir: 'libs', include: '*.jar')
+    implementation fileTree(dir: 'libs', include: '*.jar')
 
-    compile 'com.android.support:support-v4:26.0.1'
-    compile 'com.android.support:appcompat-v7:26.0.1'
+    implementation 'com.android.support:support-v4:26.0.1'
+    implementation 'com.android.support:appcompat-v7:26.0.1'
 
-    compile 'com.nineoldandroids:library:2.4.0'
+    implementation 'com.nineoldandroids:library:2.4.0'
 
 
-    compile 'com.commit451:PhotoView:1.2.4'
-    compile 'com.github.bumptech.glide:okhttp-integration:1.3.1'
-    compile 'com.squareup.okhttp:okhttp:2.4.0'
+    implementation('com.commit451:PhotoView:1.2.4') {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'appcompat-v13'
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
 
-    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.7'
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+        exclude group: 'com.squareup.okhttp', module: 'okhttp'
+    }
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.5.0'
+
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.7'
 
     implementation project(':ZUtils')
 
@@ -29,7 +37,7 @@ android {
     }
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 26
     }
     sourceSets {
         main {

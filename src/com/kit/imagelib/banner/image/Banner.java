@@ -1,10 +1,10 @@
 package com.kit.imagelib.banner.image;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -180,7 +180,7 @@ public class Banner extends ViewPager {
         timer = new Timer();
         timer.schedule(new TimerTask() {
             public void run() {
-                ((AppCompatActivity) mActivity).runOnUiThread(new Runnable() {
+                ((Activity) mActivity).runOnUiThread(new Runnable() {
                     public void run() {
                         Banner.this.setCurrentItem(Banner.this
                                 .getCurrentItem() + 1);

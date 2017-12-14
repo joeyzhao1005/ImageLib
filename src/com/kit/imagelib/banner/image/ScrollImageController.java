@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.kit.imagelib.R;
 import com.kit.imagelib.banner.common.ScrollImageEntity;
 import com.kit.imagelib.banner.utils.Convert;
-import com.kit.imagelib.uitls.PicassoUtils;
+import com.kit.imagelib.uitls.GlideUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,7 +99,7 @@ public class ScrollImageController {
                 textView.getBackground().setAlpha(100);
                 textView.setGravity(Gravity.CENTER_VERTICAL);
                 RelativeLayout.LayoutParams lp2;
-                PicassoUtils.display(activity, imageView, list.get(i).getImageUrl());
+                GlideUtils.display(activity, imageView, list.get(i).getImageUrl());
 
 //                String icon = list.get(i).getImageUrl();
 //                if (!TextUtils.isEmpty(icon)) {

@@ -6,26 +6,26 @@ import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.kit.imagelib.R;
 
 /**
  * Created by Zhao on 15/5/25.
  */
-public class PicassoUtils {
+public class GlideUtils {
 
 
     public static void display(Context context, ImageView imageView, String url, Drawable drawablePlace, Drawable drawableError) {
         if (url == null || TextUtils.isEmpty(url))
             return;
-
-        Glide.with(context)
-                .load(url)
-//				.networkPolicy(NetworkPolicy.NO_CACHE)
-//				.memoryPolicy(MemoryPolicy.NO_CACHE)
-                .placeholder(drawablePlace)
+        RequestOptions options = new RequestOptions();
+        options.placeholder(drawablePlace)
                 .error(drawableError)
                 .centerCrop()
-                .fitCenter()
+                .fitCenter();
+        Glide.with(context)
+                .load(url)
+                .apply(options)
                 .into(imageView);
     }
 
@@ -33,14 +33,13 @@ public class PicassoUtils {
     public static void display(Context context, ImageView imageView, String url) {
         if (url == null || TextUtils.isEmpty(url))
             return;
+        RequestOptions options = new RequestOptions();
+        options.error(R.drawable.no_picture)
+                .centerCrop()
+                .fitCenter();
 
         Glide.with(context)
                 .load(url)
-//				.networkPolicy(NetworkPolicy.NO_CACHE)
-//				.memoryPolicy(MemoryPolicy.NO_CACHE)
-                .error(R.drawable.no_picture)
-                .centerCrop()
-                .fitCenter()
                 .into(imageView);
     }
 

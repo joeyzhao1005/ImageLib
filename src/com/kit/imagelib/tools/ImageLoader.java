@@ -8,7 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 
 import com.kit.imagelib.interfaces.IImageLoader;
-import com.kit.utils.log.ZogUtils;
+import com.kit.utils.log.Zog;
 
 /**
  * Created by Zhao on 16/7/3.
@@ -19,7 +19,7 @@ public class ImageLoader {
 
     public static IImageLoader getInstance() {
         if(iImageLoader ==null ){
-            ZogUtils.e("You must called setImageLoader(IImageLoader iImageLoader) before.");
+            Zog.e("You must called setImageLoader(IImageLoader iImageLoader) before.");
         }
         return iImageLoader;
     }

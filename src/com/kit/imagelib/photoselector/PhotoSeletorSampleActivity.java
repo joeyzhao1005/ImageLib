@@ -90,7 +90,7 @@
 //            asc.actionSheetStrings = s;
 //            asc.colors = colors;
 //
-//            ZogUtils.i( "sun" + asc + "--"
+//            Zog.i( "sun" + asc + "--"
 //                    + asc.actionSheetStrings);
 //            new ActionSheet().show(this, asc,
 //                    new OnActionSheetItemSelectedSample(), null);

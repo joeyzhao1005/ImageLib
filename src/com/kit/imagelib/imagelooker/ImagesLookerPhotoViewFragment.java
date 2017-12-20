@@ -37,7 +37,7 @@ import com.kit.imagelib.tools.ImageLoader;
 import com.kit.imagelib.uitls.ImageLibUitls;
 import com.kit.imagelib.widget.imageview.GifView;
 import com.kit.imagelib.widget.progressbar.RoundProgressBar;
-import com.kit.utils.log.ZogUtils;
+import com.kit.utils.log.Zog;
 
 import java.io.File;
 
@@ -253,8 +253,8 @@ public class ImagesLookerPhotoViewFragment extends Fragment {
     private void showImage(String url) {
         String filedir = ImageLoader.getInstance().getCacheImage(url).getPath();
 
-        ZogUtils.i( "url:" + url + " filedir:" + filedir);
-        ZogUtils.i( "imageView.getClass().getName():" + imageView.getClass().getName());
+        Zog.i( "url:" + url + " filedir:" + filedir);
+        Zog.i( "imageView.getClass().getName():" + imageView.getClass().getName());
 
 
         if (imageView instanceof PhotoView) {
@@ -277,19 +277,19 @@ public class ImagesLookerPhotoViewFragment extends Fragment {
 
         File file = ImageLoader.getInstance().getCacheImage(url);
         boolean isLoaded = file.exists();
-        ZogUtils.i( url + " isLoaded():" + isLoaded);
+        Zog.i( url + " isLoaded():" + isLoaded);
 
         return isLoaded;
     }
 
     private GifDrawable getGif(String filedir) {
-        ZogUtils.i("filedir:" + filedir);
+        Zog.i("filedir:" + filedir);
 
         GifDrawable gifFromPath = null;
         try {
             gifFromPath = new GifDrawable(filedir);
         } catch (Exception e) {
-            ZogUtils.showException(e);
+            Zog.showException(e);
             gifFromPath = getGif(filedir);
 
         }

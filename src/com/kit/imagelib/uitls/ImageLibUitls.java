@@ -91,7 +91,7 @@ public class ImageLibUitls {
             return null;
         } else {
             String suffix = filedir.substring(filedir.lastIndexOf(".") + 1);
-//            ZogUtils.e(ImageLibUitls.class, "suffix:" + suffix);
+//            Zog.e(ImageLibUitls.class, "suffix:" + suffix);
             return suffix;
         }
     }

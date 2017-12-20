@@ -94,7 +94,7 @@
 //                    try {
 //                        BitmapUtils.saveBitmap(newImg, blurredImage);
 //                    } catch (Exception e) {
-//                        ZogUtils.showException(e);
+//                        Zog.showException(e);
 //                    }
 //
 //                    runOnUiThread(new Runnable() {

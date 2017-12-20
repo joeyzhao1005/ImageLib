@@ -131,7 +131,7 @@ public class ImageSelectAdapter extends BaseAdapter {
             ImageBean imageBean = beans.get(position);
             //local
             viewHolder.ivDel.setVisibility(View.VISIBLE);
-//            ZogUtils.i(ImageSelectAdapter.class, "imageBean.path:" + imageBean.path);
+//            Zog.i(ImageSelectAdapter.class, "imageBean.path:" + imageBean.path);
 
 
             Bitmap bitmap = null;

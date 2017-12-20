@@ -262,7 +262,7 @@
 //        intent.setType("image/*");
 //        intent.putExtra("return-data", true);
 //
-////        ZogUtils.i( WHICH_ACTION_SELETE_PHOTO);
+////        Zog.i( WHICH_ACTION_SELETE_PHOTO);
 //
 //
 //        return intent;

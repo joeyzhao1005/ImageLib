@@ -144,7 +144,8 @@ public class ImagesLookerPhotoViewFragment extends Fragment {
         return contextView;
     }
 
-    public boolean getExtra() {
+    @Override
+    protected void getExtra() {
 
         Bundle mBundle = getArguments();
         ImageBean imageData = (ImageBean) mBundle.getSerializable("arg");
@@ -162,7 +163,6 @@ public class ImagesLookerPhotoViewFragment extends Fragment {
 
 
 //        LogUtils.i(ImagesLookerPhotoViewFragment.class, "useUrl:" + useUrl);
-        return true;
 
     }
 

@@ -61,7 +61,8 @@ public class ImagesLookerActivity extends AppCompatActivity implements
         initWidget();
     }
 
-    public boolean getExtra() {
+    @Override
+    protected void getExtra() {
 
 
         isDel = getIntent().getBooleanExtra(ISDEL, false);
@@ -69,7 +70,6 @@ public class ImagesLookerActivity extends AppCompatActivity implements
         if (isDel)
             delete.setVisibility(View.VISIBLE);
         imagesList = (List<ImageBean>) getIntent().getSerializableExtra(IMAGES);
-        return true;
     }
 
     public boolean initWidget() {

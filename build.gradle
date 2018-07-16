@@ -57,9 +57,7 @@ android {
 
     }
     flavorDimensions "default"
-    productFlavors {
-        zhao {}
-    }
+
 
 
     buildTypes {

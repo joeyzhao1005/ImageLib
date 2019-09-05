@@ -26,13 +26,15 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
-import android.support.annotation.ColorRes;
-import android.support.annotation.DimenRes;
-import android.support.annotation.DrawableRes;
-import android.support.v7.widget.AppCompatImageView;
+import  android.widget.ImageView.ScaleType;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ImageView;
+
+import androidx.annotation.ColorRes;
+import androidx.annotation.DimenRes;
+import androidx.annotation.DrawableRes;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import  com.kit.imagelib.widget.imageview.roundedimageview.RoundedDrawable.Corner;
 

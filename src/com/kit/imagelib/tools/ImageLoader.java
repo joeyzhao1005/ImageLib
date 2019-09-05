@@ -1,12 +1,4 @@
 package com.kit.imagelib.tools;
-
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.Animatable;
-import android.net.Uri;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.DrawerLayout;
-
 import com.kit.imagelib.interfaces.IImageLoader;
 import com.kit.utils.log.Zog;
 

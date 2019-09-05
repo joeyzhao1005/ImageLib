@@ -4,16 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.kit.imagelib.ImageBean;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.kit.imagelib.R;
 import com.kit.imagelib.entity.ImageLibRequestResultCode;
-import com.kit.imagelib.imagelooker.ImageBrowserActivity;
-import com.kit.imagelib.imagelooker.ImagesLookerActivity;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -212,44 +210,6 @@ public class ImageLibUitls {
         }
     }
 
-    /**
-     * 跳转到浏览图片界面的公用方法
-     *
-     * @param context
-     * @param imageBeans
-     * @param index
-     */
-    public static void gotoBrowserImage(Activity context, List<ImageBean> imageBeans, int index) {
-
-        Intent intent = new Intent(context, ImageBrowserActivity.class);
-        intent.putExtra("images", (Serializable) imageBeans);
-        intent.putExtra("position", index);
-        intent.putExtra("isdel", false);
-        context.startActivityForResult(intent, ImageLibRequestResultCode.REQUEST_LOOK_PIC);
-    }
-
-
-    /**
-     * 跳转到浏览图片界面的公用方法
-     *
-     * @param context
-     * @param imageBeans
-     * @param index
-     */
-    public static void gotoLookImage(Activity context, Class imageLookerActivityClass, List<ImageBean> imageBeans, int index) {
-
-        Intent intent = new Intent();
-        if (imageLookerActivityClass == null)
-            intent.setClass(context, ImagesLookerActivity.class);
-        else
-            intent.setClass(context, imageLookerActivityClass);
-
-
-        intent.putExtra(ImagesLookerActivity.IMAGES, (Serializable) imageBeans);
-        intent.putExtra(ImagesLookerActivity.POSITION, index);
-        intent.putExtra(ImagesLookerActivity.ISDEL, false);
-        context.startActivityForResult(intent, ImageLibRequestResultCode.REQUEST_LOOK_PIC);
-    }
 
     private static void beforeSave(String fileName) {
         String dir = fileName.substring(0, fileName.lastIndexOf("/"));

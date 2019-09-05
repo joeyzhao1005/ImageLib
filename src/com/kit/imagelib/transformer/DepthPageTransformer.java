@@ -1,11 +1,12 @@
 package com.kit.imagelib.transformer;
 
 import android.annotation.SuppressLint;
-import android.support.v4.view.ViewPager.PageTransformer;
 import android.view.View;
 
+import androidx.viewpager.widget.ViewPager;
+
 @SuppressLint("NewApi")
-public class DepthPageTransformer implements PageTransformer {
+public class DepthPageTransformer implements ViewPager.PageTransformer {
 	private static float MIN_SCALE = 0.75f;
 
 	@Override

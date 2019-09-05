@@ -3,8 +3,10 @@ apply plugin: 'com.android.library'
 dependencies {
     implementation fileTree(dir: 'libs', include: '*.jar')
 
-    implementation "com.android.support:support-v4:${android_sdk_version}"
-    implementation "com.android.support:appcompat-v7:${android_sdk_version}"
+
+
+    implementation "androidx.appcompat:appcompat:${android_x_appcompat}"
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
     implementation 'com.nineoldandroids:library:2.4.0'
 

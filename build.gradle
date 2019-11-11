@@ -6,7 +6,7 @@ dependencies {
 
 
     implementation "androidx.appcompat:appcompat:${android_x_appcompat}"
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation "androidx.recyclerview:recyclerview:${android_x_recyclerview}"
 
     implementation 'com.nineoldandroids:library:2.4.0'
 

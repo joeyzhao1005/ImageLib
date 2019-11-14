@@ -4,7 +4,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: '*.jar')
 
 
-
     implementation "androidx.appcompat:appcompat:${android_x_appcompat}"
     implementation "androidx.recyclerview:recyclerview:${android_x_recyclerview}"
 
@@ -59,7 +58,6 @@ android {
 
     }
     flavorDimensions "default"
-
 
 
     buildTypes {

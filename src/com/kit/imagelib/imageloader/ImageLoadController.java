@@ -150,7 +150,7 @@ public class ImageLoadController {
          *
          * @param draweeView
          */
-        public void into(ImageView draweeView, RequestListener<Drawable> controllerListener) {
+        public void into(ImageView draweeView, RequestListener controllerListener) {
             into(draweeView, controllerListener, null);
         }
 

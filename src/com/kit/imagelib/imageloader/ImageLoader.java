@@ -7,7 +7,6 @@ import android.widget.ImageView;
 import androidx.annotation.DrawableRes;
 
 import com.kit.app.SourceWapper;
-import com.kit.app.application.AppMaster;
 import com.kit.utils.ValueOf;
 
 import java.io.File;

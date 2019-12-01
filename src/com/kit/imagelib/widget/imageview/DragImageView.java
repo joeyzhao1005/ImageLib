@@ -11,6 +11,8 @@ import android.view.MotionEvent;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
+import androidx.appcompat.widget.AppCompatImageView;
+
 /****
  * 这里你要明白几个方法执行的流程： 首先ImageView是继承自View的子类.
  * onLayout方法：是一个回调方法.该方法会在在View中的layout方法中执行，在执行layout方法前面会首先执行setFrame方法.
@@ -18,13 +20,13 @@ import android.widget.ImageView;
  * setFrame方法：判断我们的View是否发生变化，如果发生变化，那么将最新的l，t，r，b传递给View，然后刷新进行动态更新UI.
  * 并且返回ture.没有变化返回false.
  *
- * invalidate方法：用于刷新当前控件,
+ * invalidate方法：用于刷新当前控件
  *
  *
- * @author zhangjia
  *
+ * @author joeyzhao
  */
-public class DragImageView extends ImageView {
+public class DragImageView extends AppCompatImageView {
 
     private Activity mActivity;
 
@@ -49,12 +51,13 @@ public class DragImageView extends ImageView {
      * 模式 NONE：无 DRAG：拖拽. ZOOM:缩放
      *
      * @author zhangjia
-     *
      */
     private enum MODE {
         NONE, DRAG, ZOOM
 
-    };
+    }
+
+    ;
 
     private MODE mode = MODE.NONE;// 默认模式
 
@@ -68,7 +71,9 @@ public class DragImageView extends ImageView {
 
     private MyAsyncTask myAsyncTask;// 异步动画
 
-    /** 构造方法 **/
+    /**
+     * 构造方法
+     **/
     public DragImageView(Context context) {
         super(context);
     }
@@ -77,12 +82,16 @@ public class DragImageView extends ImageView {
         this.mActivity = mActivity;
     }
 
-    /** 可见屏幕宽度 **/
+    /**
+     * 可见屏幕宽度
+     **/
     public void setScreen_W(int screen_W) {
         this.screen_W = screen_W;
     }
 
-    /** 可见屏幕高度 **/
+    /**
+     * 可见屏幕高度
+     **/
     public void setScreen_H(int screen_H) {
         this.screen_H = screen_H;
     }
@@ -157,7 +166,9 @@ public class DragImageView extends ImageView {
         return true;
     }
 
-    /** 按下 **/
+    /**
+     * 按下
+     **/
     void onTouchDown(MotionEvent event) {
         mode = MODE.DRAG;
 
@@ -169,7 +180,9 @@ public class DragImageView extends ImageView {
 
     }
 
-    /** 两个手指 只能放大缩小 **/
+    /**
+     * 两个手指 只能放大缩小
+     **/
     void onPointerDown(MotionEvent event) {
         if (event.getPointerCount() == 2) {
             mode = MODE.ZOOM;
@@ -177,7 +190,9 @@ public class DragImageView extends ImageView {
         }
     }
 
-    /** 移动的处理 **/
+    /**
+     * 移动的处理
+     **/
     void onTouchMove(MotionEvent event) {
         int left = 0, top = 0, right = 0, bottom = 0;
         /** 处理拖动 **/
@@ -220,9 +235,9 @@ public class DragImageView extends ImageView {
                 top = this.getTop();
                 bottom = this.getBottom();
             }
-            if (isControl_H || isControl_V)
+            if (isControl_H || isControl_V) {
                 this.setPosition(left, top, right, bottom);
-
+            }
             current_x = (int) event.getRawX();
             current_y = (int) event.getRawY();
 
@@ -245,20 +260,26 @@ public class DragImageView extends ImageView {
 
     }
 
-    /** 获取两点的距离 **/
+    /**
+     * 获取两点的距离
+     **/
     float getDistance(MotionEvent event) {
         float x = event.getX(0) - event.getX(1);
         float y = event.getY(0) - event.getY(1);
 
-        return (float)Math.sqrt(x * x + y * y);
+        return (float) Math.sqrt(x * x + y * y);
     }
 
-    /** 实现处理拖动 **/
+    /**
+     * 实现处理拖动
+     **/
     private void setPosition(int left, int top, int right, int bottom) {
         this.layout(left, top, right, bottom);
     }
 
-    /** 处理缩放 **/
+    /**
+     * 处理缩放
+     **/
     void setScale(float scale) {
         int disX = (int) (this.getWidth() * Math.abs(1 - scale)) / 4;// 获取缩放水平距离
         int disY = (int) (this.getHeight() * Math.abs(1 - scale)) / 4;// 获取缩放垂直距离
@@ -370,7 +391,9 @@ public class DragImageView extends ImageView {
 
         private float scale_WH;// 宽高的比例
 
-        /** 当前的位置属性 **/
+        /**
+         * 当前的位置属性
+         **/
         public void setLTRB(int left, int top, int right, int bottom) {
             this.left = left;
             this.top = top;
@@ -408,8 +431,13 @@ public class DragImageView extends ImageView {
                 top = Math.max(top, start_Top);
                 right = Math.min(right, start_Right);
                 bottom = Math.min(bottom, start_Bottom);
-                Log.e("jj", "top="+top+",bottom="+bottom+",left="+left+",right="+right);
-                onProgressUpdate(new Integer[] { left, top, right, bottom });
+                Log.e("jj", "top=" + top + ",bottom=" + bottom + ",left=" + left + ",right=" + right);
+                DragImageView.this.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        MyAsyncTask.this.onProgressUpdate(new Integer[]{left, top, right, bottom});
+                    }
+                });
                 try {
                     Thread.sleep(10);
                 } catch (InterruptedException e) {

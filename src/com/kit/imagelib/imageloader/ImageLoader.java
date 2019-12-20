@@ -81,7 +81,11 @@ public class ImageLoader {
     }
 
     public ImageLoader source(String uri) {
-        this.uri = uri;
+        if (uri.startsWith(File.separator)) {
+            this.uri = SourceWapper.file(uri);
+        } else {
+            this.uri = uri;
+        }
         return this;
     }
 

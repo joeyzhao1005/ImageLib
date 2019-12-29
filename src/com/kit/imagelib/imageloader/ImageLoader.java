@@ -6,7 +6,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.DrawableRes;
 
-import com.kit.app.SourceWapper;
+import com.kit.app.SourceWrapper;
 import com.kit.utils.ValueOf;
 
 import java.io.File;
@@ -82,7 +82,7 @@ public class ImageLoader {
 
     public ImageLoader source(String uri) {
         if (uri.startsWith(File.separator)) {
-            this.uri = SourceWapper.file(uri);
+            this.uri = SourceWrapper.file(uri);
         } else {
             this.uri = uri;
         }
@@ -101,7 +101,7 @@ public class ImageLoader {
      * @return
      */
     public ImageLoader source(@DrawableRes int resId) {
-        this.uri = SourceWapper.res(resId);
+        this.uri = SourceWrapper.res(resId);
         return this;
     }
 
@@ -111,7 +111,7 @@ public class ImageLoader {
      * @return
      */
     public ImageLoader source(File file) {
-        this.uri = SourceWapper.file(file);
+        this.uri = SourceWrapper.file(file);
         return this;
     }
 

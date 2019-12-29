@@ -1,7 +1,6 @@
 package com.kit.imagelib.imageloader;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.widget.ImageView;
@@ -10,13 +9,11 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 
 import com.kit.app.Callback;
-import com.kit.app.SourceWapper;
+import com.kit.app.SourceWrapper;
 import com.kit.app.application.AppMaster;
 import com.kit.utils.ResWrapper;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 负责引导使用
@@ -66,13 +63,13 @@ public class ImageLoadController {
                 mUri = Uri.EMPTY;
             } else {
 
-                switch (SourceWapper.getType(url)) {
+                switch (SourceWrapper.getType(url)) {
                     case "asset":
-                        url = "file:///android_asset" + File.separator + SourceWapper.get(url);
+                        url = "file:///android_asset" + File.separator + SourceWrapper.get(url);
                         break;
 
                     case "res":
-                        url = "android.resource://" + AppMaster.getInstance().getApplicationId() + File.separator + SourceWapper.get(url);
+                        url = "android.resource://" + AppMaster.getInstance().getApplicationId() + File.separator + SourceWrapper.get(url);
                         break;
 
                     default:

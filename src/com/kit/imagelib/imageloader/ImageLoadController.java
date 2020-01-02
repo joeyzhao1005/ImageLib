@@ -254,6 +254,12 @@ public class ImageLoadController {
             return this;
         }
 
+        public ImageConfigStep signature(Object signature) {
+            mImageConfig.signature = signature;
+            return this;
+        }
+
+
         public ImageConfigStep scaleType(ImageView.ScaleType scaleType) {
             mImageConfig.scaleType = scaleType;
             return this;
@@ -413,6 +419,7 @@ public class ImageLoadController {
 
         int mWidth,mHeight;
 
+        Object signature;
 
         public int getWidth() {
             return mWidth;
@@ -502,6 +509,14 @@ public class ImageLoadController {
 
         public int getRoundBorderColor() {
             return roundBorderColor;
+        }
+
+        public Object getSignature() {
+            return signature;
+        }
+
+        public void setSignature(Object signature) {
+            this.signature = signature;
         }
     }
 }

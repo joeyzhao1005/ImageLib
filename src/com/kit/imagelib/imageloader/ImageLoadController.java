@@ -23,6 +23,7 @@ public class ImageLoadController {
     public static class LoadStep {
         protected ImageLoader.IImageLoader imageLoader;
         protected Uri mUri;
+        protected Drawable drawable;
         protected ImageConfig mImageConfig;
 
         protected int loopCount;
@@ -35,6 +36,10 @@ public class ImageLoadController {
 
         public Uri getUri() {
             return mUri;
+        }
+
+        public Drawable getDrawable() {
+            return drawable;
         }
 
         public ImageConfig getImageConfig() {
@@ -53,6 +58,12 @@ public class ImageLoadController {
         public LoadStep(File file) {
             mUri = Uri.parse("file://" + file.getAbsolutePath());
         }
+
+
+        public LoadStep(Drawable drawable) {
+            this.drawable = drawable;
+        }
+
 
         public LoadStep(Context context, int resId) {
             mUri = Uri.parse("res://" + context.getPackageName() + "/" + resId);
@@ -168,7 +179,7 @@ public class ImageLoadController {
          */
         public void into(ImageView draweeView, RequestListener<Drawable> listener, ImageAnimListener animationListener) {
             if (imageLoader != null) {
-                imageLoader.into(this,draweeView,listener,animationListener);
+                imageLoader.into(this, draweeView, listener, animationListener);
             }
 
         }
@@ -187,6 +198,10 @@ public class ImageLoadController {
 
         public DownloadStep(String url) {
             super(url);
+        }
+
+        public DownloadStep(Drawable drawable) {
+            super(drawable);
         }
 
         public DownloadStep(Uri uri) {
@@ -417,7 +432,7 @@ public class ImageLoadController {
         int roundBorderWidth = -1;
         int roundBorderColor = -1;
 
-        int mWidth,mHeight;
+        int mWidth, mHeight;
 
         Object signature;
 
@@ -432,7 +447,6 @@ public class ImageLoadController {
         public boolean isUseNewHierarchy() {
             return useNewHierarchy;
         }
-
 
 
         public ImageView.ScaleType getScaleType() {

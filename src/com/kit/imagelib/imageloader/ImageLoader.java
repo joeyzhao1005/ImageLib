@@ -1,5 +1,7 @@
 package com.kit.imagelib.imageloader;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.widget.ImageView;
@@ -7,7 +9,7 @@ import android.widget.ImageView;
 import androidx.annotation.DrawableRes;
 
 import com.kit.app.SourceWrapper;
-import com.kit.utils.ValueOf;
+import com.kit.utils.ResWrapper;
 
 import java.io.File;
 
@@ -15,6 +17,8 @@ import java.io.File;
 /**
  * 外部尽量不要直接使用ImageLoader
  * 对外统一使用LYGImage
+ *
+ * @author joeyzhao
  */
 public class ImageLoader {
 
@@ -22,14 +26,8 @@ public class ImageLoader {
     private static ImageLoaderProvider imageLoaderProvider;
 
     private String uri;
-    private String uid;
+    private Drawable drawable;
     private ImageLoadController.LoadStep step;
-    private boolean isUseDefaultAvatarHolder = false;
-    private boolean isUseDefaultAvatarError = false;
-    private boolean isAsCircle = false;
-    private boolean isForceStaticImage = false;
-    private boolean noAnim;
-    private boolean noCombine;
 
     private IImageLoader iImageLoader;
 
@@ -45,7 +43,11 @@ public class ImageLoader {
 
     private ImageLoadController.LoadStep apply() {
         if (step == null) {
-            step = new ImageLoadController.DownloadStep(uri);
+            if (drawable != null) {
+                step = new ImageLoadController.DownloadStep(drawable);
+            } else {
+                step = new ImageLoadController.DownloadStep(uri);
+            }
         }
         createImageLoaderIfNeed();
         step.setImageLoader(iImageLoader);
@@ -58,27 +60,6 @@ public class ImageLoader {
         return step.imageConfig();
     }
 
-
-    public ImageLoader noAvatarPlaceHolder() {
-        isUseDefaultAvatarHolder = false;
-        return this;
-    }
-
-
-    public ImageLoader noAvatarFail() {
-        isUseDefaultAvatarError = false;
-        return this;
-    }
-
-    public ImageLoader noAsCircle() {
-        isAsCircle = false;
-        return this;
-    }
-
-    public ImageLoader noAnim() {
-        this.noAnim = true;
-        return this;
-    }
 
     public ImageLoader source(String uri) {
         if (uri.startsWith(File.separator)) {
@@ -93,6 +74,7 @@ public class ImageLoader {
         this.uri = uri.getPath();
         return this;
     }
+
 
     /**
      * 加载 res 内的资源图片
@@ -116,31 +98,25 @@ public class ImageLoader {
     }
 
 
-    public ImageLoader avatar(long uid) {
-        return avatar(ValueOf.toString(uid));
-    }
-
-
-    public ImageLoader avatar(String uid) {
-        this.uid = uid;
-
-        isUseDefaultAvatarHolder = true;
-        isUseDefaultAvatarError = true;
-        isAsCircle = true;
-
-        //头像类 要强制静态显示 因为显示gif动图fresco不做剪切 强制静态显示之后 才能使用剪切
-        isForceStaticImage = true;
-
-
+    /**
+     * 加载file
+     *
+     * @return
+     */
+    public ImageLoader source(Drawable drawable) {
+        this.drawable = drawable;
         return this;
     }
 
-
-    public ImageLoader noCombine() {
-        this.noCombine = true;
+    /**
+     * 加载file
+     *
+     * @return
+     */
+    public ImageLoader source(Bitmap bitmap) {
+        this.drawable = new BitmapDrawable(ResWrapper.getResources(), bitmap);
         return this;
     }
-
 
     /**
      * 加载图片到 View 上

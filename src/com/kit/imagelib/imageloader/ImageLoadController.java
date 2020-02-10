@@ -313,7 +313,15 @@ public class ImageLoadController {
             return this;
         }
 
+        public ImageConfigStep memoryCache(boolean isUseCache) {
+            mImageConfig.memoryCache = isUseCache;
+            return this;
+        }
 
+        public ImageConfigStep diskCache(boolean diskCache) {
+            mImageConfig.diskCache = diskCache;
+            return this;
+        }
         public ImageConfigStep asCircle() {
             mImageConfig.asCircle = true;
             return this;
@@ -434,7 +442,23 @@ public class ImageLoadController {
 
         int mWidth, mHeight;
 
+        boolean memoryCache = true;
+        boolean diskCache = true;
+
         Object signature;
+
+
+        public boolean isNoCache() {
+            return !memoryCache && !diskCache;
+        }
+
+        public boolean memoryCache() {
+            return memoryCache;
+        }
+
+        public boolean diskCache() {
+            return diskCache;
+        }
 
         public int getWidth() {
             return mWidth;

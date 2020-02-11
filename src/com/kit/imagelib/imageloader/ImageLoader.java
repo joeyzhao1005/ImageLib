@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.DrawableRes;
@@ -156,12 +157,20 @@ public class ImageLoader {
         }
     }
 
+    public void clear(View view) {
+        createImageLoaderIfNeed();
+        if (iImageLoader != null) {
+            iImageLoader.clear(view);
+        }
+    }
+
     public void clearCaches() {
         createImageLoaderIfNeed();
         if (iImageLoader != null) {
             iImageLoader.clearCaches();
         }
     }
+
 
     public void clearMemoryCaches() {
         createImageLoaderIfNeed();
@@ -192,6 +201,9 @@ public class ImageLoader {
         void resume();
 
         void pause();
+
+        void clear(View view);
+
 
         void clearCaches();
 

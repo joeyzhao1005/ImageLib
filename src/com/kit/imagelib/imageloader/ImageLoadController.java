@@ -12,6 +12,7 @@ import com.kit.app.Callback;
 import com.kit.app.SourceWrapper;
 import com.kit.app.application.AppMaster;
 import com.kit.utils.ResWrapper;
+import com.kit.utils.ValueOf;
 
 import java.io.File;
 
@@ -80,7 +81,8 @@ public class ImageLoadController {
                         break;
 
                     case "res":
-                        url = "android.resource://" + AppMaster.getInstance().getApplicationId() + File.separator + SourceWrapper.get(url);
+                        drawable = ResWrapper.getDrawable(ValueOf.toInt(SourceWrapper.get(url)));
+//                        url = "android.resource://" + AppMaster.getInstance().getApplicationId() + File.separator + SourceWrapper.get(url);
                         break;
 
                     default:

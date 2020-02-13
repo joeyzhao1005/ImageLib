@@ -266,10 +266,12 @@ public class ImageLoadController {
             return this;
         }
 
-        public ImageConfigStep animFade() {
-            mImageConfig.animFade = true;
+        public ImageConfigStep animFade(boolean animFade) {
+            mImageConfig.animFade = animFade;
             return this;
         }
+
+
 
         public ImageConfigStep signature(Object signature) {
             mImageConfig.signature = signature;

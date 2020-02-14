@@ -10,7 +10,6 @@ import androidx.annotation.DrawableRes;
 
 import com.kit.app.Callback;
 import com.kit.app.SourceWrapper;
-import com.kit.app.application.AppMaster;
 import com.kit.utils.ResWrapper;
 import com.kit.utils.ValueOf;
 

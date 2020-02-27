@@ -63,7 +63,7 @@ public class ImageLoader {
 
 
     public ImageLoader source(String uri) {
-        if (uri.startsWith(File.separator)) {
+        if (uri != null && uri.startsWith(File.separator)) {
             this.uri = SourceWrapper.file(uri);
         } else {
             this.uri = uri;
@@ -72,7 +72,9 @@ public class ImageLoader {
     }
 
     public ImageLoader source(Uri uri) {
-        this.uri = uri.getPath();
+        if (uri != null) {
+            this.uri = uri.getPath();
+        }
         return this;
     }
 

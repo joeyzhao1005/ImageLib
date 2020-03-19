@@ -8,8 +8,10 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.DrawableRes;
+import androidx.annotation.Nullable;
 
 import com.kit.app.SourceWrapper;
+import com.kit.imagelib.R;
 import com.kit.utils.ResWrapper;
 
 import java.io.File;
@@ -106,8 +108,12 @@ public class ImageLoader {
      *
      * @return
      */
-    public ImageLoader source(Drawable drawable) {
-        this.drawable = drawable;
+    public ImageLoader source(@Nullable Drawable drawable) {
+        if (drawable == null) {
+            this.uri = "";
+        } else {
+            this.drawable = drawable;
+        }
         return this;
     }
 
@@ -116,18 +122,22 @@ public class ImageLoader {
      *
      * @return
      */
-    public ImageLoader source(Bitmap bitmap) {
-        this.drawable = new BitmapDrawable(ResWrapper.getResources(), bitmap);
+    public ImageLoader source(@Nullable Bitmap bitmap) {
+        if (bitmap == null) {
+            this.uri = "";
+        } else {
+            this.drawable = new BitmapDrawable(ResWrapper.getResources(), bitmap);
+        }
         return this;
     }
 
     /**
      * 加载图片到 View 上
      *
-     * @param draweeView
+     * @param imageView
      */
-    public void into(ImageView draweeView, ImageAnimListener animationListener) {
-        apply().into(draweeView, null, animationListener);
+    public void into(ImageView imageView, ImageAnimListener animationListener) {
+        apply().into(imageView, null, animationListener);
     }
 
 

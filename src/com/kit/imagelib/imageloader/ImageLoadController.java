@@ -81,8 +81,10 @@ public class ImageLoadController {
 
                     case "res":
                         drawable = ResWrapper.getDrawable(ValueOf.toInt(SourceWrapper.get(url)));
-//                        url = "android.resource://" + AppMaster.getInstance().getApplicationId() + File.separator + SourceWrapper.get(url);
+                        //资源id每次编译都会不一样，会导致错乱，不要缓存到磁盘中了，保持内存缓存就可以了
+                        imageConfig().diskCache(false);
                         break;
+
 
                     default:
                         break;
@@ -271,7 +273,6 @@ public class ImageLoadController {
         }
 
 
-
         public ImageConfigStep signature(Object signature) {
             mImageConfig.signature = signature;
             return this;
@@ -325,6 +326,7 @@ public class ImageLoadController {
             mImageConfig.diskCache = diskCache;
             return this;
         }
+
         public ImageConfigStep asCircle() {
             mImageConfig.asCircle = true;
             return this;

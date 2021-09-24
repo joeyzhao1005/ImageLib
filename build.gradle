@@ -5,7 +5,6 @@ dependencies {
 
 
     implementation "androidx.appcompat:appcompat:${android_x_appcompat}"
-    implementation "androidx.recyclerview:recyclerview:${android_x_recyclerview}"
 
     implementation project(':ZUtils')
 

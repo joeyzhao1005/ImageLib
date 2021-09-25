@@ -13,14 +13,14 @@ dependencies {
 
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     lintOptions {
         abortOnError false
     }
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 30
+        targetSdkVersion targetSdk
     }
     sourceSets {
         main {

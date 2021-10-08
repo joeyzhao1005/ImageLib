@@ -37,20 +37,6 @@ public class ImageLibUitls {
         return (int) (pxValue / scale + 0.5f);
     }
 
-
-    public static void setHomeActionBar(AppCompatActivity activity) {
-//
-
-        ActionBar actionBar = activity.getSupportActionBar();
-        if (actionBar == null) {
-            return;
-        }
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
-
-    }
-
     public static boolean isEmptyOrNullOrNullStr(String str) {
         return str == null || TextUtils.isEmpty(str) || str.equals("null");
     }
